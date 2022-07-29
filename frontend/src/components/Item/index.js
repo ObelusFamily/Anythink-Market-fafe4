@@ -9,6 +9,8 @@ import {
   ITEM_PAGE_UNLOADED,
 } from "../../constants/actionTypes";
 
+import placeholder from "../../imgs/placeholder.png"
+
 const mapStateToProps = (state) => ({
   ...state.item,
   currentUser: state.common.currentUser,
@@ -52,6 +54,11 @@ class Item extends React.Component {
               <img
                 src={this.props.item.image}
                 alt={this.props.item.title}
+
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src=placeholder;
+                  }}
                 className="item-img"
                 style={{ height: "500px", width: "100%", borderRadius: "6px" }}
               />
